@@ -12,9 +12,7 @@ def intent_received(hermes, intent_message):
 	intentName = intent_message.intent.intent_name	
 	
 	
-	if os.path.isfile('/home/pi/log.txt') :
-		hermes.publish_end_session(intent_message.session_id, "Je suis un teste.")
-		return 
+    gpio_pin = os.open("/sys/class/gpio/export", os.O_WRONLY)
 	
 	if intentName == 'Roqyun:Allumage' :
 		if probability > 0.9 :
