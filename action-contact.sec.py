@@ -16,7 +16,6 @@ def intent_received(hermes, intent_message):
 	gpio.setcfg(port.PA12, gpio.OUTPUT)
 
 	
-	gpio_pin = os.open("/home/pi/log.txt",os.O_WRONLY)
 	if intentName == 'Roqyun:Allumage' :
 		if probability > 0.9 :
 			gpio.output(port.PA12, gpio.HIGH)
