@@ -6,24 +6,27 @@ MQTT_PORT = 1883
 MQTT_ADDR = "{}:{}".format(MQTT_IP_ADDR, str(MQTT_PORT))
 
 def gpio_export(gpio_pin_num) :
-	gpio_pin = open("/home/pi/log.txt")
 def intent_received(hermes, intent_message):
 	test(); 
 	probability = intent_message.intent.probability
 	intentName = intent_message.intent.intent_name	
 
+	try 
 	
-	if intentName == 'Roqyun:Allumage' :
-		if probability > 0.9 :
-			sentence = "J allume la lumiere"
-		else :
-			sentence = " Je n'ai pas compris"
-	elif intentName == 'Roqyun:Extinction' :
-		if probability > 0.9 :
-			sentence = "Je eteins la lumiere"
-		else :
-			sentence = " Je n'ai pas compris"
-			
+		gpio_pin = open("/home/pi/log.txt", "w")
+		if intentName == 'Roqyun:Allumage' :
+			if probability > 0.9 :
+				sentence = "J allume la lumiere"
+			else :
+				sentence = " Je n'ai pas compris"
+		elif 	intentName == 'Roqyun:Extinction' :
+			if probability > 0.9 :
+				sentence = "Je eteins la lumiere"
+			else :
+				sentence = " Je n'ai pas compris"
+		gpio_pin.close()
+	except IOError:
+		sentence = "Erreur"
 			
 
 	hermes.publish_end_session(intent_message.session_id, sentence)
