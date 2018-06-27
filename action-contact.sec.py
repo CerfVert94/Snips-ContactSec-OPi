@@ -38,13 +38,13 @@ def intent_received(hermes, intent_message):
 	if intentName == 'Roqyun:Allumage' :
 		if probability > 0.9 :
 			sentence = "Je allume la lumiere"
-			gpio_off(12)
+			#gpio_on(12)
 		else :
 			sentence = " Je n'ai pas compris"
 	elif intentName == 'Roqyun:Extinction' :
 		if probability > 0.9 :
 			sentence = "Je eteins la lumiere"
-			gpio_off(12);
+			#gpio_off(12);
 		else :
 			sentence = " Je n'ai pas compris"	
 			
