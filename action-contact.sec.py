@@ -1,13 +1,14 @@
 #!/usr/bin/env python2
 from hermes_python.hermes import Hermes
-import RPi.GPIO as GPIO
 
 MQTT_IP_ADDR = "localhost"
 MQTT_PORT = 1883
 MQTT_ADDR = "{}:{}".format(MQTT_IP_ADDR, str(MQTT_PORT))
 
+def test()
+	abc = "Hello"
 def intent_received(hermes, intent_message):
-	
+	test(); 
 	probability = intent_message.intent.probability
 	intentName = intent_message.intent.intent_name	
 
