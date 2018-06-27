@@ -11,8 +11,7 @@ def intent_received(hermes, intent_message):
 	probability = intent_message.intent.probability
 	intentName = intent_message.intent.intent_name	
 
-	try 
-	
+	try :	
 		gpio_pin = open("/home/pi/log.txt", "w")
 		if intentName == 'Roqyun:Allumage' :
 			if probability > 0.9 :
