@@ -12,7 +12,7 @@ def intent_received(hermes, intent_message):
 	probability = intent_message.intent.probability
 	intentName = intent_message.intent.intent_name	
 	
-	#gpio.init()
+	gpio.init()
 	#gpio.setcfg(port.PA12, gpio.OUTPUT)
 
 	
