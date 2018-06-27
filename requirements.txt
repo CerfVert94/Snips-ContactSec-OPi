@@ -1,2 +1,2 @@
 hermes_python>=0.1
-os
+pyA20==0.2.12
