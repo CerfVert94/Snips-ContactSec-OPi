@@ -6,30 +6,30 @@ MQTT_PORT = 1883
 MQTT_ADDR = "{}:{}".format(MQTT_IP_ADDR, str(MQTT_PORT))
 
 def gpio_export(gpio_pin_num) :
-	gpio = open("/sys/class/gpio/export","w")
-	gpio.write(str(gpio_pin_num))
-	gpio.close()
-	gpio = open("/sys/class/gpio/gpio"+ str(gpio_pin_num) +"/direction","w")
-	gpio.write('out')
-	gpio.close()
+	gpio_pin = open("/sys/class/gpio/export","w")
+	gpio_pin.write(str(gpio_pin_num))
+	gpio_pin.close()
+	gpio_pin = open("/sys/class/gpio/gpio"+ str(gpio_pin_num) +"/direction","w")
+	gpio_pin.write('out')
+	gpio_pin.close()
 	
 def gpio_unexport(gpio_pin_num) : 
-	gpio = open("/sys/class/gpio/unexport", "w")
-	gpio.write(str(gpio_pin_num))
-	gpio.close()
+	gpio_pin = open("/sys/class/gpio/unexport", "w")
+	gpio_pin.write(str(gpio_pin_num))
+	gpio_pin.close()
 	
 def gpio_on(gpio_pin_num) :
 	gpio_export(gpio_pin_num)
-	gpio = open("/sys/class/gpio/gpio"+ str(gpio_pin_num) +"/value","w")
-	gpio.write(str(1))
-	gpio.close()
+	gpio_pin = open("/sys/class/gpio/gpio"+ str(gpio_pin_num) +"/value","w")
+	gpio_pin.write(str(1))
+	gpio_pin.close()
 	gpio_unexport(gpio_pin_num)
 	
 def gpio_off(gpio_pin_num) :
 	gpio_export(gpio_pin_num)
-	gpio = open("/sys/class/gpio/gpio"+ str(gpio_pin_num) +"/value","w")
-	gpio.write(str(0))
-	gpio.close()
+	gpio_pin = open("/sys/class/gpio/gpio"+ str(gpio_pin_num) +"/value","w")
+	gpio_pin.write(str(0))
+	gpio_pin.close()
 	gpio_unexport(gpio_pin_num)
 def intent_received(hermes, intent_message):
 	test(); 
