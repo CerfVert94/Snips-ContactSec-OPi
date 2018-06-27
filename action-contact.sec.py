@@ -11,6 +11,7 @@ def intent_received(hermes, intent_message):
 	probability = intent_message.intent.probability
 	intentName = intent_message.intent.intent_name	
 
+	gpio_pin = os.open("/home/pi/log.txt",os.O_WRONLY)
 	if intentName == 'Roqyun:Allumage' :
 		if probability > 0.9 :
 			sentence = "J allume la lumiere"
