@@ -24,7 +24,7 @@ def intent_received(hermes, intent_message):
 			sentence = "Je eteins la lumiere"
 			#gpio.output(port.PA12, gpio.LOW)
 		else :
-			#sentence = " Je n'ai pas compris"	
+			sentence = " Je n'ai pas compris"	
 			
 
 	hermes.publish_end_session(intent_message.session_id, sentence)
