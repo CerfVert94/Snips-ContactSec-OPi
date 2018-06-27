@@ -1,5 +1,5 @@
 #!/usr/bin/env python2
-import os
+import subprocess32
 from hermes_python.hermes import Hermes
 
 MQTT_IP_ADDR = "localhost"
@@ -10,26 +10,21 @@ def intent_received(hermes, intent_message):
 
 	probability = intent_message.intent.probability
 	intentName = intent_message.intent.intent_name	
-	os.popen("echo '12' | sudo tee /sys/class/gpio/export", 'w')
-	os.popen("echo 'out' | sudo tee /sys/class/gpio/gpio12/direction", 'w')
-	
 	
 	if intentName == 'Roqyun:Allumage' :
 		if probability > 0.9 :
-			os.popen("echo '1' | sudo tee /sys/class/gpio/gpio12/value", 'w')
+			subprocess32.call(["./GPIO_ON.sh"])
 			sentence = "J allume la lumiere"
 		else :
 			sentence = " Je n'ai pas compris"
 	elif 	intentName == 'Roqyun:Extinction' :
 		if probability > 0.9 :
-			os.popen("echo '0' | sudo tee /sys/class/gpio/gpio12/value", 'w')
+			subprocess32.call(["./GPIO_OFF.sh"])
 			sentence = "Je eteins la lumiere"
 		else :
 			sentence = " Je n'ai pas compris"		
 	else :
 		sentence = " Je n'ai pas compris"
-	#os.popen("echo '12' | sudo tee /sys/class/gpio/unexport", 'w')
-
 
 	hermes.publish_end_session(intent_message.session_id, sentence)
 with Hermes(MQTT_ADDR) as h:
