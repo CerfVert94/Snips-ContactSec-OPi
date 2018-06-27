@@ -16,15 +16,15 @@ def intent_received(hermes, intent_message):
 	if intentName == 'Roqyun:Allumage' :
 		if probability > 0.9 :
 			sentence = "J allume la lumiere"
-			gpio.output(port.PA12, gpio.HIGH)
+			#gpio.output(port.PA12, gpio.HIGH)
 		else :
 			sentence = " Je n'ai pas compris"
 	elif intentName == 'Roqyun:Extinction' :
 		if probability > 0.9 :
 			sentence = "Je eteins la lumiere"
-			gpio.output(port.PA12, gpio.LOW)
+			#gpio.output(port.PA12, gpio.LOW)
 		else :
-			sentence = " Je n'ai pas compris"	
+			#sentence = " Je n'ai pas compris"	
 			
 
 	hermes.publish_end_session(intent_message.session_id, sentence)
