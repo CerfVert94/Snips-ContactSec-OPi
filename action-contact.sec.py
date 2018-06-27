@@ -1,7 +1,6 @@
 #!/usr/bin/env python2
 from hermes_python.hermes import Hermes
-from pyA20.gpio import gpio
-from pyA20.gpio import port
+import os
 
 MQTT_IP_ADDR = "localhost"
 MQTT_PORT = 1883
@@ -12,9 +11,7 @@ def intent_received(hermes, intent_message):
 	probability = intent_message.intent.probability
 	intentName = intent_message.intent.intent_name	
 	
-	gpio.init()
-	#gpio.setcfg(port.PA12, gpio.OUTPUT)
-
+	dir_fd = os.open('/home/pi', os.O_RDONLY)
 	
 	if intentName == 'Roqyun:Allumage' :
 		if probability > 0.9 :
