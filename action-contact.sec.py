@@ -28,7 +28,7 @@ def intent_received(hermes, intent_message):
 			sentence = " Je n'ai pas compris"		
 	else :
 		sentence = " Je n'ai pas compris"
-	os.popen("echo '12' | sudo tee /sys/class/gpio/unexport", 'w')
+	#os.popen("echo '12' | sudo tee /sys/class/gpio/unexport", 'w')
 
 
 	hermes.publish_end_session(intent_message.session_id, sentence)
