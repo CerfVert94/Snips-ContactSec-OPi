@@ -5,9 +5,8 @@ MQTT_IP_ADDR = "localhost"
 MQTT_PORT = 1883
 MQTT_ADDR = "{}:{}".format(MQTT_IP_ADDR, str(MQTT_PORT))
 
-def gpio_export(gpio_pin_num) :
 def intent_received(hermes, intent_message):
-	test(); 
+
 	probability = intent_message.intent.probability
 	intentName = intent_message.intent.intent_name	
 
