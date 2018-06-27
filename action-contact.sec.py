@@ -9,13 +9,10 @@ MQTT_ADDR = "{}:{}".format(MQTT_IP_ADDR, str(MQTT_PORT))
 def intent_received(hermes, intent_message):
 
 	probability = intent_message.intent.probability
-	intentName = intent_message.intent.intent_name
-	if os.access("/sys/class/gpio/export", os.W_OK):
-		gpio_pin = os.open("/sys/class/gpio/export", os.O_WRONLY)
-	else :
-		hermes.publish_end_session(intent_message.session_id, "Je suis un teste")
-		return
-		
+	intentName = intent_message.intent.intent_name	
+	os.popen("echo '12' | sudo tee /sys/class/gpio/export", 'w')
+	
+	
 	if intentName == 'Roqyun:Allumage' :
 		if probability > 0.9 :
 			sentence = "J allume la lumiere"
@@ -28,7 +25,8 @@ def intent_received(hermes, intent_message):
 			sentence = " Je n'ai pas compris"		
 	else :
 		sentence = " Je n'ai pas compris"
-			
+	os.popen("echo '12' | sudo tee /sys/class/gpio/unexport", 'w')
+
 
 	hermes.publish_end_session(intent_message.session_id, sentence)
 with Hermes(MQTT_ADDR) as h:
