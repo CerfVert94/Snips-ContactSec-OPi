@@ -10,7 +10,7 @@ MQTT_ADDR = "{}:{}".format(MQTT_IP_ADDR, str(MQTT_PORT))
 def intent_received(hermes, intent_message):
 	GPIO.setwarnings(False);
 	GPIO.setmode(GPIO.BCM)
-	GPIO.setup(32, GPIO.OUT, initial=GPIO.LOW)
+	GPIO.setup(12, GPIO.OUT, initial=GPIO.LOW)
 	probability = intent_message.intent.probability
 	intentName = intent_message.intent.intent_name	
 	gpio = open("/home/pi/test.py","w")
