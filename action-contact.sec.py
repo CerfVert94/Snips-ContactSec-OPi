@@ -11,15 +11,18 @@ def intent_received(hermes, intent_message):
 	probability = intent_message.intent.probability
 	intentName = intent_message.intent.intent_name	
 	os.popen("echo '12' | sudo tee /sys/class/gpio/export", 'w')
+	os.popen("echo 'out' | sudo tee /sys/class/gpio/gpio12/direction", 'w')
 	
 	
 	if intentName == 'Roqyun:Allumage' :
 		if probability > 0.9 :
+			os.popen("echo '1' | sudo tee /sys/class/gpio/gpio12/value", 'w')
 			sentence = "J allume la lumiere"
 		else :
 			sentence = " Je n'ai pas compris"
 	elif 	intentName == 'Roqyun:Extinction' :
 		if probability > 0.9 :
+			os.popen("echo '0' | sudo tee /sys/class/gpio/gpio12/value", 'w')
 			sentence = "Je eteins la lumiere"
 		else :
 			sentence = " Je n'ai pas compris"		
