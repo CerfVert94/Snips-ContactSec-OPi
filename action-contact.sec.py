@@ -9,11 +9,9 @@ MQTT_ADDR = "{}:{}".format(MQTT_IP_ADDR, str(MQTT_PORT))
 def intent_received(hermes, intent_message):
 
 	probability = intent_message.intent.probability
-	intentName = intent_message.intent.intent_name	
+	intentName = intent_message.intent.intent_name
 	
-	
-    gpio_pin = os.open("/sys/class/gpio/export", os.O_WRONLY)
-	
+	gpio_pin = os.open("/sys/class/gpio/export", os.O_WRONLY)
 	if intentName == 'Roqyun:Allumage' :
 		if probability > 0.9 :
 			sentence = "J allume la lumiere"
