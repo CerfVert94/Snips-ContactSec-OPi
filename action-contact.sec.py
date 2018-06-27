@@ -10,8 +10,12 @@ def intent_received(hermes, intent_message):
 
 	probability = intent_message.intent.probability
 	intentName = intent_message.intent.intent_name
-	
-	gpio_pin = os.open("/sys/class/gpio/export", os.O_WRONLY)
+	if os.access("/sys/class/gpio/export", os.R_OK):
+		gpio_pin = os.open("/sys/class/gpio/export", os.O_WRONLY)
+	else :
+		hermes.publish_end_session(intent_message.session_id, "Je suis un teste")
+		return
+		
 	if intentName == 'Roqyun:Allumage' :
 		if probability > 0.9 :
 			sentence = "J allume la lumiere"
