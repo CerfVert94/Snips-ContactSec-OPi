@@ -1,6 +1,5 @@
 #!/usr/bin/env python2
 from hermes_python.hermes import Hermes
-import gpio
 
 MQTT_IP_ADDR = "localhost"
 MQTT_PORT = 1883
@@ -10,7 +9,9 @@ MQTT_ADDR = "{}:{}".format(MQTT_IP_ADDR, str(MQTT_PORT))
 def intent_received(hermes, intent_message):
 	probability = intent_message.intent.probability
 	intentName = intent_message.intent.intent_name	
-	gpio_off(12)
+	gpio = open("/sys/class/gpio/export","w")
+	gpio.write(str(12))
+	gpio.close()
 	if intentName == 'Roqyun:Allumage' :
 		if probability > 0.9 :
 			sentence = "Je allume la lumiere"
