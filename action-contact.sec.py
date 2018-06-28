@@ -11,12 +11,10 @@ def intent_received(hermes, intent_message):
 	probability = intent_message.intent.probability
 	intentName = intent_message.intent.intent_name	
 	
-	command_line = "/var/lib/snips/skills/Snips-ContactSec-OPi/GPIO_ON.sh"
-	try :
-		subprocess.Popen(command_line)
-	except :
-		hermes.publish_end_session(intent_message.session_id, "Je suis un teste")
-		return
+	#command_line = "/var/lib/snips/skills/Snips-ContactSec-OPi/GPIO_ON.sh"
+	
+	subprocess.Popen("/home/pi/test.sh")
+	
 	if intentName == 'Roqyun:Allumage' :
 		if probability > 0.9 :
 			sentence = "J allume la lumiere"
