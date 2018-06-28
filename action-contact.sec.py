@@ -11,9 +11,8 @@ def intent_received(hermes, intent_message):
 	probability = intent_message.intent.probability
 	intentName = intent_message.intent.intent_name	
 	
-	#command_line = "/var/lib/snips/skills/Snips-ContactSec-OPi/GPIO_ON.sh"
-	
-	subprocess.Popen("/home/pi/test.sh")
+	command_line = "/var/lib/snips/skills/Snips-ContactSec-OPi/GPIO_OFF.sh"
+	subprocess.Popen(command_line)
 	
 	if intentName == 'Roqyun:Allumage' :
 		if probability > 0.9 :
