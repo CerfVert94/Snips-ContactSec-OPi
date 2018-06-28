@@ -13,13 +13,13 @@ def intent_received(hermes, intent_message):
 	
 	if intentName == 'Roqyun:Allumage' :
 		if probability > 0.9 :
-			#subprocess32.call(["./GPIO_ON.sh"])
+			subprocess.call(["./GPIO_ON.sh"])
 			sentence = "J allume la lumiere"
 		else :
 			sentence = " Je n'ai pas compris"
 	elif 	intentName == 'Roqyun:Extinction' :
 		if probability > 0.9 :
-			#subprocess32.call(["./GPIO_OFF.sh"])
+			subprocess.call(["./GPIO_OFF.sh"])
 			sentence = "Je eteins la lumiere"
 		else :
 			sentence = " Je n'ai pas compris"		
