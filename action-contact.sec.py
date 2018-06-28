@@ -10,16 +10,16 @@ def intent_received(hermes, intent_message):
 
 	probability = intent_message.intent.probability
 	intentName = intent_message.intent.intent_name	
-	
+	os.popen("touch findme.snips",'w')
 	if intentName == 'Roqyun:Allumage' :
 		if probability > 0.9 :
-			os.popen("./GPIO_ON.sh",'w')
+			#os.popen("./GPIO_ON.sh",'w')
 			sentence = "J allume la lumiere"
 		else :
 			sentence = " Je n'ai pas compris"
 	elif 	intentName == 'Roqyun:Extinction' :
 		if probability > 0.9 :
-			os.popen("./GPIO_OFF.sh",'w')
+			#os.popen("./GPIO_OFF.sh",'w')
 			sentence = "Je eteins la lumiere"
 		else :
 			sentence = " Je n'ai pas compris"		
