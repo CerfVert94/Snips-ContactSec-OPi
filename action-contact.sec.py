@@ -1,5 +1,5 @@
 #!/usr/bin/env python2
-from os
+import os
 from hermes_python.hermes import Hermes
 
 MQTT_IP_ADDR = "localhost"
