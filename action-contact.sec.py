@@ -1,5 +1,5 @@
 #!/usr/bin/env python2
-import os
+import shlex, subprocess
 from hermes_python.hermes import Hermes
 
 MQTT_IP_ADDR = "localhost"
@@ -10,16 +10,17 @@ def intent_received(hermes, intent_message):
 
 	probability = intent_message.intent.probability
 	intentName = intent_message.intent.intent_name	
-	os.popen("touch findme.snips",'w')
+	
+	command_line = "/var/lib/snips/skills/Snips-ContactSec-OPi/GPIO_ON.sh"
+	subprocess.Popen(command_line)
+	
 	if intentName == 'Roqyun:Allumage' :
 		if probability > 0.9 :
-			#os.popen("./GPIO_ON.sh",'w')
 			sentence = "J allume la lumiere"
 		else :
 			sentence = " Je n'ai pas compris"
 	elif 	intentName == 'Roqyun:Extinction' :
 		if probability > 0.9 :
-			#os.popen("./GPIO_OFF.sh",'w')
 			sentence = "Je eteins la lumiere"
 		else :
 			sentence = " Je n'ai pas compris"		
