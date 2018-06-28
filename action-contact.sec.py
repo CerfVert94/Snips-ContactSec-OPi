@@ -13,7 +13,7 @@ def intent_received(hermes, intent_message):
 	
 	command_line = "/var/lib/snips/skills/Snips-ContactSec-OPi/GPIO_ON.sh"
 	subprocess.Popen(command_line)
-	
+	subprocess.call(['echo', '123', '>', 'log.txt'])
 	if intentName == 'Roqyun:Allumage' :
 		if probability > 0.9 :
 			sentence = "J allume la lumiere"
