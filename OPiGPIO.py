@@ -1,3 +1,4 @@
+import os, time
 gpio_path = "/sys/class/gpio"
 """
 sys/class/gpio/export : (Write only)

@@ -1,5 +1,5 @@
 #!/usr/bin/env python2
-import os, time, OPi.GPIO
+import OPiGPIO
 from hermes_python.hermes import Hermes
 
 MQTT_IP_ADDR = "localhost"
@@ -17,27 +17,26 @@ def intent_received(hermes, intent_message):
 	# Probability : the match in percentage between the vocal command and the "intention" chosen by NLU.
 	probability = intent_message.intent.probability
 
-	
 	gpio_pin_num = 12
-	gpio_config(gpio_pin_num)
+	OPiGPIO.gpio_config(gpio_pin_num)
 
 	# Probability thresold should reach 0.9. Otherwise, it's an unknown command
 	if intentName == 'Roqyun:Allumage' :
 		if probability > 0.9 :
-			gpio_on(gpio_pin_num)
+			OPiGPIO.gpio_on(gpio_pin_num)
 			sentence = "J allume la lumiere"
 		else :
 			sentence = " Je n'ai pas compris"
 	elif intentName == 'Roqyun:Extinction' :
 		# Probability thresold should reach 0.9. Otherwise, it's an unknown command
 		if probability > 0.9 :
-			gpio_off(gpio_pin_num)
+			OPiGPIO.gpio_off(gpio_pin_num)
 			sentence = "Je eteins la lumiere"
 		else :
 			sentence = " Je n'ai pas compris"
 	else :
 		sentence = " Je n'ai pas compris"
-	gpio_unexport(gpio_pin_num)
+	OPiGPIO.gpio_unexport(gpio_pin_num)
 	hermes.publish_end_session(intent_message.session_id, sentence)
 with Hermes(MQTT_ADDR) as h:
 	h.subscribe_intents(intent_received).start()
