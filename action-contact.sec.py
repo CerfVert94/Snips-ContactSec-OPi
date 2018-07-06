@@ -20,15 +20,14 @@ def intent_received(hermes, intent_message):
 	gpio_pin_num = 12
 	OPiGPIO.gpio_config(gpio_pin_num)
 
-	# Probability thresold should reach 0.9. Otherwise, it's an unknown command
-	if intentName == 'Roqyun:Allumage' :
+	# Probability threshold should reach 0.9. Otherwise, it's an unknown command
+	if intentName == 'Roqyun:Allumage' : 
 		if probability > 0.9 :
 			OPiGPIO.gpio_on(gpio_pin_num)
 			sentence = "J allume la lumiere"
 		else :
 			sentence = " Je n'ai pas compris"
 	elif intentName == 'Roqyun:Extinction' :
-		# Probability thresold should reach 0.9. Otherwise, it's an unknown command
 		if probability > 0.9 :
 			OPiGPIO.gpio_off(gpio_pin_num)
 			sentence = "Je eteins la lumiere"
